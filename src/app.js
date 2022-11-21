@@ -24,8 +24,9 @@ function formatTime(timestamp) {
 function displayTemperature(response) {
   let currentCity = document.querySelector("#cityName");
   currentCity.innerHTML = response.data.city;
+  celciusTemperature = response.data.temperature.current;
   let currentTemp = document.querySelector("#current-degrees");
-  currentTemp.innerHTML = Math.round(response.data.temperature.current);
+  currentTemp.innerHTML = Math.round(celciusTemperature);
   let weatherDescription = document.querySelector("#weather-description");
   weatherDescription.innerHTML = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
@@ -55,7 +56,33 @@ function handleSubmit(event) {
   let searchElement = document.querySelector("#search-input");
   search(searchElement.value);
 }
-search("Mandurah");
+
+function farenheightConversion(event) {
+  event.preventDefault();
+  let farenheightTemp = (celciusTemperature * 9) / 5 + 32;
+  celciusLink.classList.remove("active");
+  farenheightLink.classList.add("active");
+  let currentTemp = document.querySelector("#current-degrees");
+  currentTemp.innerHTML = Math.round(farenheightTemp);
+}
+
+function celciusConversion(event) {
+  event.preventDefault();
+  farenheightLink.classList.remove("active");
+  celciusLink.classList.add("active");
+  let currentTemp = document.querySelector("#current-degrees");
+  currentTemp.innerHTML = Math.round(celciusTemperature);
+}
+
+let celciusTemperature = null;
 
 let searchBar = document.querySelector("#search-form");
 searchBar.addEventListener("submit", handleSubmit);
+
+let farenheightLink = document.querySelector("#farenheight");
+farenheightLink.addEventListener("click", farenheightConversion);
+
+let celciusLink = document.querySelector("#celcius");
+celciusLink.addEventListener("click", celciusConversion);
+
+search("Mandurah");
