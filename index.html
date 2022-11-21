@@ -19,13 +19,15 @@
     <div class="app">
       <div class="container">
         <div class="weather-container">
-          <form>
-            <div class="row searchform" id="searchform">
+          <form id="search-form">
+            <div class="row searchform">
               <div class="col-9">
                 <input
                   type="text"
                   placeholder="Enter a city"
                   class="form-control searchbox"
+                  id="search-input"
+                  autocomplete="off"
                 />
               </div>
               <div class="col-3 col-button">
@@ -38,8 +40,10 @@
             </div>
           </form>
           <h2 class="cityName" id="cityName">MANDURAH</h2>
+          <span
+            ><img src="#" alt="" class="weather-icon" id="weather-icon"
+          /></span>
           <ul class="weather-overview">
-            <li class="current-date-time">Friday 13:35</li>
             <li class="weather-description" id="weather-description">
               Overcast Clouds
             </li>
@@ -48,10 +52,17 @@
               <span class="wind"> Wind</span>
               <span id="wind">12.2 km/h </span>
             </li>
+            <li class="last-updated">
+              last updated:
+              <span class="current-date-time" id="current-date-time"
+                >Friday 13:35</span
+              >
+            </li>
           </ul>
           <div class="row current-temperature">
             <div class="col">
               <div class="current-degrees" id="current-degrees">17</div>
+
               <div class="units">
                 <span class="celcius">&degC</span>
                 <span class="farenheight">&degF</span>

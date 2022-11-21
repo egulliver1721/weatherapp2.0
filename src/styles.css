@@ -57,7 +57,10 @@ body {
 
 h2 {
   text-align: center;
+  margin: 0 auto;
+  display: block;
 }
+
 .weather-overview {
   padding: 0;
   text-align: center;
@@ -65,8 +68,14 @@ h2 {
 }
 
 .current-date-time {
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
+  color: black;
+}
+
+.last-updated {
+  color: rgb(71, 70, 70);
+  font-size: 12px;
 }
 
 .weather-description {

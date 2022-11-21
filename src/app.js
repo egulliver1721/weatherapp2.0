@@ -1,5 +1,27 @@
+function formatTime(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayTemperature(response) {
-  console.log(response.data);
   let currentCity = document.querySelector("#cityName");
   currentCity.innerHTML = response.data.city;
   let currentTemp = document.querySelector("#current-degrees");
@@ -12,13 +34,28 @@ function displayTemperature(response) {
   let wind = response.data.wind.speed;
   let windValue = document.querySelector("#wind");
   windValue.innerHTML = `${wind} km/h`;
+  let time = document.querySelector("#current-date-time");
+  time.innerHTML = formatTime(response.data.time * 1000);
+  let iconElement = document.querySelector("#weather-icon");
+  console.log(response.data.condition.icon);
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 }
 
-let apiKey = "b4ffb413431b5d4406b3ot5c80af963a";
-let query = "Mandurah";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}`;
+function search(city) {
+  let apiKey = "b4ffb413431b5d4406b3ot5c80af963a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchElement = document.querySelector("#search-input");
+  search(searchElement.value);
+}
+search("Mandurah");
 
-new Date();
-console.log(new Date(1668992925 * 1000));
+let searchBar = document.querySelector("#search-form");
+searchBar.addEventListener("submit", handleSubmit);
