@@ -23,28 +23,37 @@ function formatTime(timestamp) {
 
 function displayTemperature(response) {
   let currentCity = document.querySelector("#cityName");
-  let currentTemp = document.querySelector("#current-degrees");
-  let weatherDescription = document.querySelector("#weather-description");
-  let humidity = response.data.temperature.humidity;
-  let humidityValue = document.querySelector("#humidity");
-  let wind = response.data.wind.speed;
-  let windValue = document.querySelector("#wind");
-  let time = document.querySelector("#current-date-time");
-  let iconElement = document.querySelector("#weather-icon");
   currentCity.innerHTML = response.data.city;
+
+  let currentTemp = document.querySelector("#current-degrees");
   celciusTemperature = response.data.temperature.current;
   currentTemp.innerHTML = Math.round(celciusTemperature);
+
+  let weatherDescription = document.querySelector("#weather-description");
   weatherDescription.innerHTML = response.data.condition.description;
-  humidityValue.innerHTML = `${humidity} &degC`;
-  windValue.innerHTML = `${wind} km/h`;
+
+  let time = document.querySelector("#current-date-time");
   time.innerHTML = formatTime(response.data.time * 1000);
+
+  let humidity = response.data.temperature.humidity;
+  let humidityValue = document.querySelector("#humidity");
+  humidityValue.innerHTML = `${humidity} &degC`;
+
+  let wind = response.data.wind.speed;
+  let windValue = document.querySelector("#wind");
+  windValue.innerHTML = `${wind} km/h`;
+
+  let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  getForecast(response.data.city);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
   let days = [
@@ -77,6 +86,13 @@ function search(city) {
   let apiKey = "b4ffb413431b5d4406b3ot5c80af963a";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(displayTemperature);
+}
+
+function getForecast(city) {
+  console.log(city);
+  let apiKey = `b4ffb413431b5d4406b3ot5c80af963a`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
