@@ -52,31 +52,41 @@ function displayTemperature(response) {
   getForecast(response.data.city);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
               <div class="col day-one">
-                ${day}
-                <div class="day-one-icon">☀</div>
+                ${formatDay(forecastDay.time)}
+                <div class="day-one-icon">
+                <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                  forecastDay.condition.icon
+                }.png" alt="" width=40px
+          /></div>
                 <div class="day-one-max">
-                  18&deg <span class="day-one-min">11&deg</span>
+                  ${Math.round(
+                    forecastDay.temperature.maximum
+                  )}&deg <span class="day-one-min">${Math.round(
+          forecastDay.temperature.minimum
+        )}&deg</span>
                 </div>
               </div>
             `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -130,4 +140,3 @@ let celciusLink = document.querySelector("#celcius");
 celciusLink.addEventListener("click", celciusConversion);
 
 search("Mandurah");
-displayForecast();
