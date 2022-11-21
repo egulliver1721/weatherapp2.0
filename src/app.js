@@ -23,26 +23,54 @@ function formatTime(timestamp) {
 
 function displayTemperature(response) {
   let currentCity = document.querySelector("#cityName");
-  currentCity.innerHTML = response.data.city;
-  celciusTemperature = response.data.temperature.current;
   let currentTemp = document.querySelector("#current-degrees");
-  currentTemp.innerHTML = Math.round(celciusTemperature);
   let weatherDescription = document.querySelector("#weather-description");
-  weatherDescription.innerHTML = response.data.condition.description;
   let humidity = response.data.temperature.humidity;
   let humidityValue = document.querySelector("#humidity");
-  humidityValue.innerHTML = `${humidity} &degC`;
   let wind = response.data.wind.speed;
   let windValue = document.querySelector("#wind");
-  windValue.innerHTML = `${wind} km/h`;
   let time = document.querySelector("#current-date-time");
-  time.innerHTML = formatTime(response.data.time * 1000);
   let iconElement = document.querySelector("#weather-icon");
-  console.log(response.data.condition.icon);
+  currentCity.innerHTML = response.data.city;
+  celciusTemperature = response.data.temperature.current;
+  currentTemp.innerHTML = Math.round(celciusTemperature);
+  weatherDescription.innerHTML = response.data.condition.description;
+  humidityValue.innerHTML = `${humidity} &degC`;
+  windValue.innerHTML = `${wind} km/h`;
+  time.innerHTML = formatTime(response.data.time * 1000);
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+              <div class="col day-one">
+                ${day}
+                <div class="day-one-icon">☀</div>
+                <div class="day-one-max">
+                  18&deg <span class="day-one-min">11&deg</span>
+                </div>
+              </div>
+            `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function search(city) {
@@ -86,3 +114,4 @@ let celciusLink = document.querySelector("#celcius");
 celciusLink.addEventListener("click", celciusConversion);
 
 search("Mandurah");
+displayForecast();
