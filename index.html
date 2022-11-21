@@ -12,6 +12,12 @@
     />
     <link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap"
+      rel="stylesheet"
+    />
     <title>Weather App</title>
   </head>
   <!--Coding-->
@@ -39,18 +45,14 @@
               </div>
             </div>
           </form>
-          <h2 class="cityName" id="cityName">MANDURAH</h2>
-          <span
-            ><img src="#" alt="" class="weather-icon" id="weather-icon"
-          /></span>
+          <h2 class="cityName" id="cityName"></h2>
           <ul class="weather-overview">
-            <li class="weather-description" id="weather-description">
-              Overcast Clouds
-            </li>
+            <li class="weather-description" id="weather-description"></li>
             <li class="weather-information">
-              <span>Humidity </span> <span id="humidity">53%</span>
+              <span>Humidity </span> <span id="humidity"></span
+              ><span class="white-space">&nbsp;&nbsp;|&nbsp;</span>
               <span class="wind"> Wind</span>
-              <span id="wind">12.2 km/h </span>
+              <span id="wind"> </span>
             </li>
             <li class="last-updated">
               last updated:
@@ -61,58 +63,13 @@
           </ul>
           <div class="row current-temperature">
             <div class="col">
-              <div class="current-degrees" id="current-degrees">17</div>
-
-              <div class="units">
-                <span class="celcius">
-                  <a href="" id="celcius" class="active">&degC</a></span
-                >
-                <span class="farenheight"
-                  ><a href="" id="farenheight">&degF</a></span
-                >
+              <div>
+                <strong class="current-degrees" id="current-degrees"></strong
+                ><span class="celcius">&degC</span>
               </div>
             </div>
           </div>
-          <div class="weather-forecast" id="weather-forecast">
-            <div class="row">
-              <div class="col day-one">
-                Sunday
-                <div class="day-one-icon">☀</div>
-                <div class="day-one-max">
-                  18&deg <span class="day-one-min">11&deg</span>
-                </div>
-              </div>
-              <div class="col day-two">
-                Sunday
-                <div class="day-two-icon">☀</div>
-                <div class="day-two-max">
-                  18&deg <span class="day-two-min">11&deg</span>
-                </div>
-              </div>
-              <div class="col day-three">
-                Sunday
-                <div class="day-three-icon">☀</div>
-                <div class="day-three-max">
-                  18&deg <span class="day-three-min">11&deg</span>
-                </div>
-              </div>
-              <div class="col day-four">
-                Sunday
-                <div class="day-four-icon">☀</div>
-                <div class="day-four-max">
-                  18&deg <span class="day-four-min">11&deg</span>
-                </div>
-              </div>
-              <div class="col day-five">
-                Sunday
-                <div class="day-five-icon">☀</div>
-                <div class="day-five-max">
-                  18&deg <span class="day-five-min">11&deg</span>
-                </div>
-              </div>
-            </div>
-            <!--row div-->
-          </div>
+          <div class="weather-forecast" id="weather-forecast"></div>
           <!--weather-forecast div-->
         </div>
         <!--weather-container div-->

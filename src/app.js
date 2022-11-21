@@ -43,12 +43,6 @@ function displayTemperature(response) {
   let windValue = document.querySelector("#wind");
   windValue.innerHTML = `${wind} km/h`;
 
-  let iconElement = document.querySelector("#weather-icon");
-  iconElement.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-  );
-
   getForecast(response.data.city);
 }
 
@@ -70,17 +64,17 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-              <div class="col day-one">
+              <div class="col">
                 ${formatDay(forecastDay.time)}
-                <div class="day-one-icon">
+                <div>
                 <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
                   forecastDay.condition.icon
                 }.png" alt="" width=40px
           /></div>
-                <div class="day-one-max">
+                <div>
                   ${Math.round(
                     forecastDay.temperature.maximum
-                  )}&deg <span class="day-one-min">${Math.round(
+                  )}&deg <span>${Math.round(
           forecastDay.temperature.minimum
         )}&deg</span>
                 </div>
@@ -111,32 +105,7 @@ function handleSubmit(event) {
   search(searchElement.value);
 }
 
-function farenheightConversion(event) {
-  event.preventDefault();
-  let farenheightTemp = (celciusTemperature * 9) / 5 + 32;
-  celciusLink.classList.remove("active");
-  farenheightLink.classList.add("active");
-  let currentTemp = document.querySelector("#current-degrees");
-  currentTemp.innerHTML = Math.round(farenheightTemp);
-}
-
-function celciusConversion(event) {
-  event.preventDefault();
-  farenheightLink.classList.remove("active");
-  celciusLink.classList.add("active");
-  let currentTemp = document.querySelector("#current-degrees");
-  currentTemp.innerHTML = Math.round(celciusTemperature);
-}
-
-let celciusTemperature = null;
-
 let searchBar = document.querySelector("#search-form");
 searchBar.addEventListener("submit", handleSubmit);
-
-let farenheightLink = document.querySelector("#farenheight");
-farenheightLink.addEventListener("click", farenheightConversion);
-
-let celciusLink = document.querySelector("#celcius");
-celciusLink.addEventListener("click", celciusConversion);
 
 search("Mandurah");
