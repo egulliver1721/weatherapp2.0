@@ -11,12 +11,101 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
+  <!--Coding-->
   <body>
-    <div class="container">
-      <h1>hello world</h1>
+    <div class="app">
+      <div class="container">
+        <div class="weather-container">
+          <form>
+            <div class="row searchform" id="searchform">
+              <div class="col-9">
+                <input
+                  type="text"
+                  placeholder="Enter a city"
+                  class="form-control searchbox"
+                />
+              </div>
+              <div class="col-3 col-button">
+                <input
+                  type="submit"
+                  class="btn btn-primary w-100 searchbutton"
+                  value="Search"
+                />
+              </div>
+            </div>
+          </form>
+          <h2 class="cityName" id="cityName">MANDURAH</h2>
+          <ul class="weather-overview">
+            <li class="current-date-time">Friday 13:35</li>
+            <li class="weather-description" id="weather-description">
+              Overcast Clouds
+            </li>
+            <li class="weather-information">
+              <span>Humidity </span> <span id="humidity">53%</span>
+              <span class="wind"> Wind</span>
+              <span id="wind">12.2 km/h </span>
+            </li>
+          </ul>
+          <div class="row current-temperature">
+            <div class="col">
+              <div class="current-degrees" id="current-degrees">17</div>
+              <div class="units">
+                <span class="celcius">&degC</span>
+                <span class="farenheight">&degF</span>
+              </div>
+            </div>
+          </div>
+          <div class="row weather-forecast">
+            <div class="col day-one">
+              Sunday
+              <div class="day-one-icon">☀</div>
+              <div class="day-one-max">
+                18&deg <span class="day-one-min">11&deg</span>
+              </div>
+            </div>
+            <div class="col day-two">
+              Sunday
+              <div class="day-two-icon">☀</div>
+              <div class="day-two-max">
+                18&deg <span class="day-two-min">11&deg</span>
+              </div>
+            </div>
+            <div class="col day-three">
+              Sunday
+              <div class="day-three-icon">☀</div>
+              <div class="day-three-max">
+                18&deg <span class="day-three-min">11&deg</span>
+              </div>
+            </div>
+            <div class="col day-four">
+              Sunday
+              <div class="day-four-icon">☀</div>
+              <div class="day-four-max">
+                18&deg <span class="day-four-min">11&deg</span>
+              </div>
+            </div>
+            <div class="col day-five">
+              Sunday
+              <div class="day-five-icon">☀</div>
+              <div class="day-five-max">
+                18&deg <span class="day-five-min">11&deg</span>
+              </div>
+            </div>
+          </div>
+          <!--weather-forecast div-->
+        </div>
+        <!--weather-container div-->
+        <footer>
+          This project was coded by Emily Gulliver and is open-sourced on GitHub
+          and hosted on Netlify.
+        </footer>
+      </div>
+      <!--Bootstrap container div-->
     </div>
+    <!--Weather App Container-->
     <script src="src/app.js"></script>
   </body>
 </html>

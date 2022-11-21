@@ -1,3 +1,118 @@
-h1 {
-  color: violet;
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background: white;
+}
+
+.app {
+  margin: 60px auto;
+}
+
+.weather-container {
+  border: 1px solid white;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 30px;
+  background: linear-gradient(
+    179.7deg,
+    rgb(197, 214, 227) 2.9%,
+    rgb(144, 175, 202) 97.1%
+  );
+}
+
+.searchform {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 35px 30px;
+}
+.searchbox {
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.726);
+  border: none;
+  border-radius: 6px;
+  color: rgba(116, 116, 120, 0.4);
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  line-height: 20px;
+  padding: 15px 20px;
+}
+
+.searchbutton {
+  background: white;
+  color: black;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  height: 50px;
+  padding: 0px 0;
+  max-width: 200px;
+}
+
+.col-button {
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+}
+.weather-overview {
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.current-date-time {
+  font-size: 16px;
+  text-align: center;
+}
+
+.weather-description {
+  font-size: 16px;
+}
+
+.weather-information {
+  font-size: 12px;
+}
+
+.current-temperature {
+  border: 1px solid;
+  margin: 40px auto;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  background: white;
+}
+
+.current-degrees {
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.units {
+  font-size: 18px;
+  line-height: 0;
+  position: relative;
+  bottom: 30px;
+  right: 3px;
+}
+
+.weather-forecast {
+  margin: 40px 30px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.726);
+}
+
+footer {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 12px;
+  padding-top: 15px;
 }
